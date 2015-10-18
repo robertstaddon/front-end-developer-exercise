@@ -525,14 +525,14 @@ body {
   padding: 17px 0;
   background-color: #fff;
 }
-.page > .content > section {
+.page > .content > article {
   display: inline-block;
   width: 68%;
 }
-.page > .content > section > article {
+.page > .content > article > section {
   padding: 0 70px 80px 70px;
 }
-.page > .content > section > article > header:before {
+.page > .content > article > section > header:before {
   content: "";
   float: left;
   width: 80px;
@@ -540,7 +540,7 @@ body {
   margin-right: 18px;
   background: url("../images/icons/sprites/icons_large.png") no-repeat;
 }
-.page > .content > section > article > header > h2 {
+.page > .content > article > section > header > h2 {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 30px;
   font-weight: 700;
@@ -549,7 +549,7 @@ body {
   margin: 0 0 7px 0;
   padding-top: 12px;
 }
-.page > .content > section > article > header > p {
+.page > .content > article > section > header > p {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
   font-weight: 300;
@@ -557,59 +557,59 @@ body {
   line-height: 20px;
   margin: 7px 0 24px 0;
 }
-.page > .content > section > article:nth-child( 1) header.inactive:before {
+.page > .content > article > section:nth-child( 1) header.inactive:before {
   background-position: 0px 0px;
 }
-.page > .content > section > article:nth-child( 1) header:before {
+.page > .content > article > section:nth-child( 1) header:before {
   background-position: 0px -454.02px;
 }
-.page > .content > section > article:nth-child( 2) header.inactive:before {
+.page > .content > article > section:nth-child( 2) header.inactive:before {
   background-position: 0px -64.86px;
 }
-.page > .content > section > article:nth-child( 2) header:before {
+.page > .content > article > section:nth-child( 2) header:before {
   background-position: 0px -518.88px;
 }
-.page > .content > section > article:nth-child( 3) header.inactive:before {
+.page > .content > article > section:nth-child( 3) header.inactive:before {
   background-position: 0px -129.72px;
 }
-.page > .content > section > article:nth-child( 3) header:before {
+.page > .content > article > section:nth-child( 3) header:before {
   background-position: 0px -583.74px;
 }
-.page > .content > section > article:nth-child( 4) header.inactive:before {
+.page > .content > article > section:nth-child( 4) header.inactive:before {
   background-position: 0px -194.58px;
 }
-.page > .content > section > article:nth-child( 4) header:before {
+.page > .content > article > section:nth-child( 4) header:before {
   background-position: 0px -648.6px;
 }
-.page > .content > section > article:nth-child( 5) header.inactive:before {
+.page > .content > article > section:nth-child( 5) header.inactive:before {
   background-position: 0px -259.44px;
 }
-.page > .content > section > article:nth-child( 5) header:before {
+.page > .content > article > section:nth-child( 5) header:before {
   background-position: 0px -713.46px;
 }
-.page > .content > section > article:nth-child( 6) header.inactive:before {
+.page > .content > article > section:nth-child( 6) header.inactive:before {
   background-position: 0px -324.3px;
 }
-.page > .content > section > article:nth-child( 6) header:before {
+.page > .content > article > section:nth-child( 6) header:before {
   background-position: 0px -778.32px;
 }
-.page > .content > section > article:nth-child( 7) header.inactive:before {
+.page > .content > article > section:nth-child( 7) header.inactive:before {
   background-position: 0px -389.16px;
 }
-.page > .content > section > article:nth-child( 7) header:before {
+.page > .content > article > section:nth-child( 7) header:before {
   background-position: 0px -843.18px;
 }
-.page > .content > section > article > p {
+.page > .content > article > section > p {
   font-family: 'Helvetica', sans-serif;
   font-size: 13px;
   line-height: 18px;
   color: #65686f;
 }
-.page > .content > section > article a {
+.page > .content > article > section a {
   color: #6fbee7;
   text-decoration: none;
 }
-.page > .content > section > article a:hover {
+.page > .content > article > section a:hover {
   color: #36abe1;
   text-decoration: underline;
 }
@@ -620,7 +620,7 @@ body.js > .page > .content {
 body.js > .page > .content > nav > div.moving-bg {
   top: 5px;
 }
-body.js > .page > .content > section > article {
+body.js > .page > .content > article > section {
   height: 450px;
   padding-bottom: 0;
 }

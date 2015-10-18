@@ -1,64 +1,73 @@
 $( document ).ready(function() {
 	$('body').addClass('js');
+	
 	SocialSteps.init();		
     TabbedContent.init();
 });
 
-var TabbedContent = {
-    init: function() {
-		$('nav li a').first().addClass('active');
+/*
+ * TabbedContent: Control tab functionality
+ */
+var TabbedContent = TabbedContent || {};
+(function(obj) {
+    obj.init = function() {
+		$('.content nav li a').first().addClass('active');
 		
-		$('nav li a').on('click', function(event) {
-			$('nav li a').removeClass('active');    
+		$('.content nav').on('click', 'li a', function(event) {
+			$(this).parent().siblings().children().removeClass('active');
 			$(this).addClass('active');
 
-			TabbedContent.slideTabBg($(this));
-			TabbedContent.slideContent($(this));
+			slideTabBg($(this));
+			slideContent($(this));
 			
 			event.preventDefault();
 		});
-    },
+    };
 
-	slideTabBg: function(tab) {
+	function slideTabBg(tab) {
 		var bgObj = tab.parents('nav').find('.moving-bg');
 		var bgMarginTop = parseInt( tab.parents('ol').css('marginTop') );
 		$(bgObj).stop().animate({
 			top: tab.position()['top'] + bgMarginTop
 		}, 800, 'swing' );
-	},
+	};
 
-    slideContent: function(tab) {
-		var sectionObj = tab.parents('div.content').find('section');
-		var articleObj = tab.parents('div.content').find('article');
+    function slideContent(tab) {
+		var articleEl = tab.parents('div.content').find('article');
+		var sectionEl = tab.parents('div.content').find('section');
 		var tabNum = tab.parent().prevAll().length;
 		
-		var margin = articleObj.height() * tabNum * -1;
+		var margin = sectionEl.height() * tabNum * -1;
 		
-		sectionObj.stop().animate({
+		articleEl.stop().animate({
 			marginTop: margin + "px"
 		}, 800, 'swing' );
-    }
-}
+    };
+})(TabbedContent);
 
-var SocialSteps = {
-	init: function() {
+/*
+ * SocialSteps: Load social information for each Baby Step
+ */
+var SocialSteps = SocialSteps || {};
+(function(obj) {
+	obj.init = function() {
 		$.getJSON('baby-steps.json', function(data) {
 			totalSteps = 7;
 			
 			_.times(totalSteps, function(n) {
-				var thisStep = n + 1;
+				var stepNumber = n + 1;
 				
-				var friends = _.where(data.friends, { babyStep: thisStep });
+				var friends = _.where(data.friends, { babyStep: stepNumber });
 				
-				var socialText = SocialSteps.getText(friends, thisStep);
+				var socialText = getText(friends, stepNumber);
 				
 				if(!_.isEmpty(socialText))
-					$( "article#baby-step-" + thisStep ).append('<p class="social">' + socialText + '</p>');
+					$( "article#baby-step-" + stepNumber ).append('<p class="social">' + socialText + '</p>');
 			});
 		});
-	},
+	};
 	
-	getText: function(friends, thisStep) {
+	function getText(friends, stepNumber) {
 		friends = _.sortByAll(friends, ["lastName", "firstName"]);
 		
 		var socialText = "";
@@ -67,29 +76,29 @@ var SocialSteps = {
 				break;
 			case 1:
 				socialText =
-					SocialSteps.displayName(friends[0]) + " is also in Baby Step " + thisStep;
+					displayName(friends[0]) + " is also in Baby Step " + stepNumber;
 				break;				
 			case 2:
 				socialText =
-					SocialSteps.displayName(friends[0]) + " and " +
-					SocialSteps.displayName(friends[1]) + " are also in Baby Step " + thisStep;
+					displayName(friends[0]) + " and " +
+					displayName(friends[1]) + " are also in Baby Step " + stepNumber;
 				break;
 			case 3:
 				socialText =
-					SocialSteps.displayName(friends[0]) + ", " +
-					SocialSteps.displayName(friends[1]) + ", and 1 other friend are also in Baby Step " + thisStep;
+					displayName(friends[0]) + ", " +
+					displayName(friends[1]) + ", and 1 other friend are also in Baby Step " + stepNumber;
 				break;
 			default:
 				var otherFriends = _.size(friends) - 2;
 				socialText =
-					SocialSteps.displayName(friends[0]) + ", " +
-					SocialSteps.displayName(friends[1]) + ", and " + otherFriends + " other friends are also in Baby Step " + thisStep;
+					displayName(friends[0]) + ", " +
+					displayName(friends[1]) + ", and " + otherFriends + " other friends are also in Baby Step " + stepNumber;
 				break;
 		}
 		return socialText;
-	},
+	};
 	
-	displayName: function(friend) {
+	function displayName(friend) {
 		return '<a href="">' + friend.firstName + ' ' + friend.lastName + '</a>';
-	}
-}
+	};
+})(SocialSteps);
